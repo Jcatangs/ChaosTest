@@ -22,9 +22,9 @@ int main()
 
     while (window.isOpen())
     {
-        font.loadFromFile("GamersDemoBold.ttf");
+        font.loadFromFile("GamersDemoRegular.ttf");
 
-        if (!font.loadFromFile("GamersDemoBold.ttf"))
+        if (!font.loadFromFile("GamersDemoRegular.ttf"))
         {
             cout << "Can't load the font file." << endl;
         }
@@ -51,7 +51,7 @@ int main()
                     std::cout << "mouse x: " << event.mouseButton.x << std::endl;
                     std::cout << "mouse y: " << event.mouseButton.y << std::endl;
 
-                    if (vertices.size() < 5)
+                    if (vertices.size() < 3)
                     {
                         vertices.push_back(Vector2f(event.mouseButton.x, event.mouseButton.y));
                     }
@@ -119,6 +119,7 @@ int main()
             rect.setPosition(Vector2f(points[i].x, points[i].y));
             rect.setFillColor(Color::Color(0,255,255,195));
             window.draw(rect);
+
         }
         window.display();
     }
