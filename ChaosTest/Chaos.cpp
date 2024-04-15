@@ -117,7 +117,10 @@ int main()
         {
             RectangleShape rect(Vector2f(3, 3));
             rect.setPosition(Vector2f(points[i].x, points[i].y));
-            rect.setFillColor(Color::Color(0,255,255,195));
+
+            if (i % 2 == 0) rect.setFillColor(Color::Color(0,255,255,195));
+            else rect.setFillColor(Color::Color(255, 0, 255, 195));
+
             window.draw(rect);
 
         }
