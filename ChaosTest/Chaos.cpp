@@ -20,6 +20,18 @@ int main()
     vector<Vector2f> points;
     Font font;
 
+    Texture textureBackground;
+
+    // Load a graphic into the texture
+    textureBackground.loadFromFile("CrystalShard.png");
+    Sprite spriteBackground;
+
+    // Attach the texture to the sprite
+    spriteBackground.setTexture(textureBackground);
+
+    // Set the spriteBackground to cover the screen
+    spriteBackground.setPosition(0, 0);
+
     while (window.isOpen())
     {
         font.loadFromFile("GamersDemoRegular.ttf");
@@ -29,7 +41,7 @@ int main()
             cout << "Can't load the font file." << endl;
         }
 
-        Text text1("\n                                                                         Click anywhere to make three points for a triangle \n                                                                                         The fourth point starts the chaos \n", font);
+        Text text1("\n                                                                         Click anywhere to make three points to form a chaotic portal \n                                                                                         The fourth point opens the portal. \n", font);
         text1.setCharacterSize(30);
         text1.setStyle(Text::Regular);
         text1.setFillColor(Color::White);
@@ -86,7 +98,6 @@ int main()
             int random_index = rand() % vertices.size();
             ///calculate midpoint between random vertex and the last point in the vector
             Vector2f mid_point = (vertices[random_index] + points.back()) * 0.5f;
-
             ///push back the newly generated coord.
             points.push_back(mid_point);
         }
@@ -99,6 +110,7 @@ int main()
         */
         window.clear();
 
+        window.draw(spriteBackground);
         window.draw(text1);
 
         int n = vertices.size();
@@ -117,12 +129,10 @@ int main()
         {
             RectangleShape rect(Vector2f(3, 3));
             rect.setPosition(Vector2f(points[i].x, points[i].y));
-
-            if (i % 2 == 0) rect.setFillColor(Color::Color(0,255,255,195));
+            if (i % 2 == 0) rect.setFillColor(Color::Color(0, 255, 255, 195));
             else rect.setFillColor(Color::Color(255, 0, 255, 195));
 
             window.draw(rect);
-
         }
         window.display();
     }
