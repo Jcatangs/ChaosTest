@@ -118,7 +118,7 @@ int main()
 
         if (points.size() > 0)
         {
-            for (int i = 0; i < 40; i++)
+            for (int i = 0; i < 52; i++)
             {
             ///generate more point(s)
             ///select random vertex
