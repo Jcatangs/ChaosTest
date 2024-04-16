@@ -12,7 +12,7 @@ using namespace std;
 int main()
 {
     // Create a video mode object
-    VideoMode vm(1920, 1080);
+    VideoMode vm(1856, 1096);
     // Create and open a window for the game
     RenderWindow window(vm, "Chaos Game", Style::Default);
 
@@ -41,7 +41,7 @@ int main()
             cout << "Can't load the font file." << endl;
         }
 
-        Text text1("\n                                                                         Click anywhere to make three points to form a chaotic portal \n                                                                                         The fourth point opens the portal \n", font);
+        Text text1("\n                                                               Place three droplets of blood onto three corners to create a portal \n                                                                                          A fourth drop opens the portal \n", font);
         text1.setCharacterSize(30);
         text1.setStyle(Text::Regular);
         text1.setFillColor(Color::White);
@@ -84,24 +84,6 @@ int main()
         {
             window.close();
         }
-        /*
-        ****************************************
-        Update
-        ****************************************
-        */
-
-        if (points.size() > 0)
-        {
-            
-            ///generate more point(s)
-            ///select random vertex
-            int random_index = rand() % vertices.size();
-            ///calculate midpoint between random vertex and the last point in the vector
-            Vector2f mid_point = (vertices[random_index] + points.back()) * 0.5f;
-            ///push back the newly generated coord.
-            points.push_back(mid_point);
-        }
-
 
         /*
         ****************************************
@@ -113,28 +95,41 @@ int main()
         window.draw(spriteBackground);
         window.draw(text1);
 
-        int n1 = vertices.size();
-
         //Draw initial points
-        for (int i = 0; i < n1; i++)
+        for (size_t i = 0; i < vertices.size(); i++)
         {
-            RectangleShape rect(Vector2f(3, 3));
+            RectangleShape rect(Vector2f(10, 10));
             rect.setPosition(Vector2f(vertices[i].x, vertices[i].y));
-            rect.setFillColor(Color(0,255,255,195));
+            rect.setFillColor(Color(255, 51, 51,195));
             window.draw(rect);
         }
 
-        int n2 = points.size();
+
         //Start Chaos points
-        for (int i = 0; i < n2; i++)
+        for (size_t i = 0; i < points.size(); i++)
         {
-            RectangleShape rect(Vector2f(3, 3));
+            RectangleShape rect(Vector2f(2, 2));
             rect.setPosition(Vector2f(points[i].x, points[i].y));
-            if (i % 2 == 0) rect.setFillColor(Color(0, 255, 255, 195));
-            else rect.setFillColor(Color(255, 0, 255, 195));
+            if (i % 2 == 0) rect.setFillColor(Color(255, 0, 0, 180));
+            else rect.setFillColor(Color(255, 255, 51, 190));
 
             window.draw(rect);
         }
+
+        if (points.size() > 0)
+        {
+            for (int i = 0; i < 40; i++)
+            {
+            ///generate more point(s)
+            ///select random vertex
+            int random_index = rand() % vertices.size();
+            ///calculate midpoint between random vertex and the last point in the vector
+            Vector2f mid_point = (vertices[random_index] + points.back()) * 0.5f;
+            ///push back the newly generated coord.
+                points.push_back(mid_point);
+            }
+        }
+
         window.display();
     }
 }
