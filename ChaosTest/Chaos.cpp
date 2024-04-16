@@ -41,7 +41,7 @@ int main()
             cout << "Can't load the font file." << endl;
         }
 
-        Text text1("\n                                                                         Click anywhere to make three points to form a chaotic portal \n                                                                                         The fourth point opens the portal. \n", font);
+        Text text1("\n                                                                         Click anywhere to make three points to form a chaotic portal \n                                                                                         The fourth point opens the portal \n", font);
         text1.setCharacterSize(30);
         text1.setStyle(Text::Regular);
         text1.setFillColor(Color::White);
