@@ -113,19 +113,20 @@ int main()
         window.draw(spriteBackground);
         window.draw(text1);
 
-        int n = vertices.size();
+        int n1 = vertices.size();
 
         //Draw initial points
-        for (int i = 0; i < n; i++)
+        for (int i = 0; i < n1; i++)
         {
             RectangleShape rect(Vector2f(3, 3));
             rect.setPosition(Vector2f(vertices[i].x, vertices[i].y));
-            rect.setFillColor(Color::Color(0,255,255,195));
+            rect.setFillColor(Color(0,255,255,195));
             window.draw(rect);
         }
 
+        int n2 = points.size();
         //Start Chaos points
-        for (int i = 0; i < points.size(); i++)
+        for (int i = 0; i < n2; i++)
         {
             RectangleShape rect(Vector2f(3, 3));
             rect.setPosition(Vector2f(points[i].x, points[i].y));
