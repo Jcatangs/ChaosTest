@@ -19,6 +19,9 @@ int main()
     vector<Vector2f> vertices;
     vector<Vector2f> points;
     Font font;
+    Vector2f curr;
+    Vector2f previous1;
+    Vector2f previous2;
 
     font.loadFromFile("GamersDemoRegular.ttf");
 
@@ -63,7 +66,7 @@ int main()
                     std::cout << "mouse x: " << event.mouseButton.x << std::endl;
                     std::cout << "mouse y: " << event.mouseButton.y << std::endl;
 
-                    if (vertices.size() < 3)
+                    if (vertices.size() < 5)
                     {
                         vertices.push_back(Vector2f(event.mouseButton.x, event.mouseButton.y));
                     }
@@ -81,15 +84,25 @@ int main()
         }
         if (points.size() > 0)
         {
-            for (int i = 0; i < 72; i++)
+            for (int i = 0; i < 100; i++)
             {
-                ///generate more point(s)
-                ///select random vertex
                 int random_index = rand() % vertices.size();
-                ///calculate midpoint between random vertex and the last point in the vector
                 Vector2f mid_point = (vertices[random_index] + points.back()) * 0.5f;
-                ///push back the newly generated coord.
-                points.push_back(mid_point);
+
+                curr = vertices[random_index];
+                if (curr != previous1)
+                {
+                    ///generate more point(s)
+                    ///select random vertex
+                    //int random_index = rand() % vertices.size();
+                    ///calculate midpoint between random vertex and the last point in the vector
+                    //Vector2f mid_point = (vertices[random_index] + points.back()) * 0.5f;
+                    ///push back the newly generated coord.
+                    points.push_back(mid_point);
+                }
+                //if (curr == previous1) previous2 = curr;
+                previous1 = curr;
+
             }
          }
 
@@ -117,18 +130,15 @@ int main()
             window.draw(rect);
         }
 
-
         //Start Chaos points
         for (size_t i = 0; i < points.size(); i++)
         {
             RectangleShape rect(Vector2f(2, 2));
             rect.setPosition(Vector2f(points[i].x, points[i].y));
-            if (i % 2 == 0) rect.setFillColor(Color(255, 0, 0, 180));
-            else rect.setFillColor(Color(255, 255, 51, 190));
-
+            if (i % 2 == 0) rect.setFillColor(Color(51, 255, 51, 200));
+            else rect.setFillColor(Color(0, 255, 255, 200));
             window.draw(rect);
         }
-
 
         window.display();
     }
