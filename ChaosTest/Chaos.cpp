@@ -30,6 +30,11 @@ int main()
        throw runtime_error("Can't load the font file.");
     }
 
+    SoundBuffer warpBuffer;
+    warpBuffer.loadFromFile("dark.wav");
+    Sound warp;
+    warp.setBuffer(warpBuffer);
+
     Texture textureBackground;
 
     // Load a graphic into the texture
@@ -41,6 +46,7 @@ int main()
 
     // Set the spriteBackground to cover the screen
     spriteBackground.setPosition(0, 0);
+    warp.play();
 
     while (window.isOpen())
     {
@@ -91,6 +97,7 @@ int main()
 
                 curr = vertices[random_index];
                 if (curr != previous1)
+                //if ((previous1 == previous2) && ((curr.x != previous1.x+1 && curr.y != previous1.y+1) || (curr.x != previous1.x - 1 && curr.y != previous1.y - 1)))
                 {
                     ///generate more point(s)
                     ///select random vertex
@@ -99,8 +106,13 @@ int main()
                     //Vector2f mid_point = (vertices[random_index] + points.back()) * 0.5f;
                     ///push back the newly generated coord.
                     points.push_back(mid_point);
+                    //previous2 = curr;
                 }
-                //if (curr == previous1) previous2 = curr;
+                /*
+                if (curr == previous1) {
+                    previous2 = curr;
+                    points.push_back(mid_point);
+                }*/
                 previous1 = curr;
 
             }
@@ -129,7 +141,7 @@ int main()
             rect.setFillColor(Color(255, 51, 51,195));
             window.draw(rect);
         }
-
+ 
         //Start Chaos points
         for (size_t i = 0; i < points.size(); i++)
         {
@@ -138,6 +150,7 @@ int main()
             if (i % 2 == 0) rect.setFillColor(Color(51, 255, 51, 190));
             else rect.setFillColor(Color(0, 255, 255, 190));
             window.draw(rect);
+  
         }
 
         window.display();
