@@ -44,7 +44,7 @@ int main()
 
     while (window.isOpen())
     {
-        Text text1("\n                                                               Place three droplets of blood onto three corners to create a portal \n                                                                                          A fourth drop opens the portal \n", font);
+        Text text1("\n                                                               Place five droplets of blood onto their own corners to create a portal \n                                                                                          A sixth drop opens the portal \n", font);
         text1.setCharacterSize(30);
         text1.setStyle(Text::Regular);
         text1.setFillColor(Color::White);
