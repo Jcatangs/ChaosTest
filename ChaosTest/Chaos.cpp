@@ -20,6 +20,13 @@ int main()
     vector<Vector2f> points;
     Font font;
 
+    font.loadFromFile("GamersDemoRegular.ttf");
+
+    if (!font.loadFromFile("GamersDemoRegular.ttf"))
+    {
+       throw runtime_error("Can't load the font file.");
+    }
+
     Texture textureBackground;
 
     // Load a graphic into the texture
@@ -34,13 +41,6 @@ int main()
 
     while (window.isOpen())
     {
-        font.loadFromFile("GamersDemoRegular.ttf");
-
-        if (!font.loadFromFile("GamersDemoRegular.ttf"))
-        {
-            cout << "Can't load the font file." << endl;
-        }
-
         Text text1("\n                                                               Place three droplets of blood onto three corners to create a portal \n                                                                                          A fourth drop opens the portal \n", font);
         text1.setCharacterSize(30);
         text1.setStyle(Text::Regular);
