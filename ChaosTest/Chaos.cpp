@@ -79,6 +79,19 @@ int main()
                 }
             }
         }
+        if (points.size() > 0)
+        {
+            for (int i = 0; i < 72; i++)
+            {
+                ///generate more point(s)
+                ///select random vertex
+                int random_index = rand() % vertices.size();
+                ///calculate midpoint between random vertex and the last point in the vector
+                Vector2f mid_point = (vertices[random_index] + points.back()) * 0.5f;
+                ///push back the newly generated coord.
+                points.push_back(mid_point);
+            }
+         }
 
         if (Keyboard::isKeyPressed(Keyboard::Escape))
         {
@@ -116,19 +129,6 @@ int main()
             window.draw(rect);
         }
 
-        if (points.size() > 0)
-        {
-            for (int i = 0; i < 52; i++)
-            {
-            ///generate more point(s)
-            ///select random vertex
-            int random_index = rand() % vertices.size();
-            ///calculate midpoint between random vertex and the last point in the vector
-            Vector2f mid_point = (vertices[random_index] + points.back()) * 0.5f;
-            ///push back the newly generated coord.
-                points.push_back(mid_point);
-            }
-        }
 
         window.display();
     }
