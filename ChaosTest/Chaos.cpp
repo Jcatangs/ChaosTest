@@ -148,7 +148,7 @@ int main()
             RectangleShape rect(Vector2f(2, 2));
             rect.setPosition(Vector2f(points[i].x, points[i].y));
             if (i % 2 == 0) rect.setFillColor(Color(51, 255, 51, 190));
-            else rect.setFillColor(Color(0, 255, 255, 190));
+            else rect.setFillColor(Color(255, 255, 255, 190));
             window.draw(rect);
   
         }
